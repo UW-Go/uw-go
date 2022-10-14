@@ -8,7 +8,6 @@ export const Home = () => {
             
             
             
-            
             Hello world</h1>
     )
 }
