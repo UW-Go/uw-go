@@ -22,7 +22,6 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.0",
     "styled-components": "^5.3.6",
-    "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -30,15 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "cd .. && husky install ./client/.husky",
-    "format": "prettier . --write",
-    "lint": "eslint . --fix"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "prepare": "cd ../ && husky install ./client/.husky"
   },
   "browserslist": {
     "production": [
@@ -53,13 +44,22 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router": "^5.1.19",
-    "@types/styled-components": "^5.1.26",
-    "eslint": "^8.2.0",
-    "husky": "^7.0.0",
-    "lint-staged": "^11.2.6",
-    "prettier": "^2.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0"
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.0",
+    "eslint-plugin-react": "^7.31.10",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "2.7.1",
+    "typescript": "^4.8.4"
+  },
+  "lint-staged": {
+      "src/**/*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+      "src/**/*.{js,jsx,ts,tsx,css,scss,md}": "prettier --write --ignore-unknown"
   }
 }
