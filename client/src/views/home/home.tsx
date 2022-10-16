@@ -1,5 +1,20 @@
-import React from "react";
+import styled from "styled-components";
+import { Home as HomeForm } from "components/Forms/Home/Home";
 
 export const Home = (): JSX.Element => {
-  return <h1>Home</h1>;
+  return (
+    <MainWrapper>
+      <HomeForm />
+    </MainWrapper>
+  );
 };
+
+const MainWrapper = styled.div`
+  background-color: #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  height: 100vh;
+  box-sizing: border-box;
+`;
