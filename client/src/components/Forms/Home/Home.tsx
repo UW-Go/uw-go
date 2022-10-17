@@ -113,6 +113,7 @@ export const Home = observer(() => {
             endIcon={<ArrowRightAltIcon />}
             disabled={isLoading}
             href={`/route?${queryParams}`}
+            disableElevation
           >
             Let's Go!
           </ButtonWrapper>
@@ -138,6 +139,8 @@ const SelectWrapper = styled(Select)`
 
 const ButtonWrapper = styled(Button)`
   width: 100%;
+  height: 48px;
+  font-weight: bold !important;
 `;
 
 const Img = styled.img`

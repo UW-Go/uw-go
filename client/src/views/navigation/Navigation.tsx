@@ -1,5 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components";
+import { Navigation as NavigationComp } from "components/Navigation/Navigation";
 
 // A custom hook that builds on useLocation to parse
 // the query string for you. (from react rouver v5 docs)
@@ -10,7 +12,22 @@ function useQuery() {
 }
 
 export const Navigation = (): JSX.Element => {
-  let query = useQuery();
-  console.log(query.get("start"), query.get("end"), query.get("avoidances"));
-  return <h1>Navigation</h1>;
+  const query = useQuery();
+  const start = query.get("start");
+  const end = query.get("end");
+  const avoidances = JSON.parse(query.get("avoidances") || "");
+
+  return (
+    <MainWrapper>
+      {start && end ? (
+        <NavigationComp start={start} end={end} avoidances={avoidances} />
+      ) : null}
+    </MainWrapper>
+  );
 };
+
+const MainWrapper = styled.div`
+  background-color: #bbb;
+  height: 100vh;
+  box-sizing: border-box;
+`;
