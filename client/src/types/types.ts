@@ -3,10 +3,16 @@ export interface NodeListItem {
   name: string;
 }
 
+export enum IconType {
+  STRAIGHT,
+  LEFT,
+  RIGHT,
+  DOOR,
+}
 interface Instruction {
   title: string;
   description: string;
-  iconUrl: string;
+  icon: IconType;
 }
 
 enum ArrowType {
@@ -14,6 +20,7 @@ enum ArrowType {
   LEFT,
   RIGHT,
 }
+
 interface Arrow {
   x: number;
   y: number;
