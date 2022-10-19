@@ -4,13 +4,8 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
+def sample_endpoint():
     return 'Hello World!'
-
-@app.route('/home')
-def home():
-    return 'Home Page!'
-
 
 if __name__ == '__main__':
     app.run()
