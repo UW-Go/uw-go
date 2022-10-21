@@ -1,6 +1,12 @@
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
-import { NavigationResponse, Avoidances, Node, IconType, Arrow } from "types/types";
+import {
+  NavigationResponse,
+  Avoidances,
+  Node,
+  IconType,
+  Arrow,
+} from "types/types";
 import { Requests } from "classes/requests/requests";
 
 export class NavigationViewState {
@@ -61,15 +67,15 @@ export class NavigationViewState {
     return this.currentNode?.instruction.icon ?? 0;
   }
 
-  get arrow(): Arrow | undefined{
+  get arrow(): Arrow | undefined {
     return this.currentNode?.overlayItems.arrow;
   }
 
-  get progress(): number{
-    if(this._i == 0){
-      return 0
+  get progress(): number {
+    if (this._i == 0) {
+      return 0;
     }
-    return (this._i) / (this.nodes.length - 1) * 100;
+    return (this._i / (this.nodes.length - 1)) * 100;
   }
 
   goNext = () => {

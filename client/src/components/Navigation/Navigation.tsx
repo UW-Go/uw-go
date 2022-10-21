@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Avoidances } from "types/types";
 import { NavigationViewState } from "components/Navigation/NavigationViewState";
 import { observer } from "mobx-react-lite";
@@ -32,7 +32,7 @@ export const Navigation = observer(
       instructionDescription,
       instructionIcon,
       arrow,
-      progress
+      progress,
     } = viewState;
 
     useEffect(
@@ -45,17 +45,24 @@ export const Navigation = observer(
 
     const ref = useRef<HTMLDivElement>(null);
 
-    useEffect(()=>{
+    useEffect(() => {
       const groundPosition = async () => {
         const containerWidth = ref.current?.clientWidth ?? 0;
         const containerHeight = ref.current?.clientHeight ?? 0;
-        setGroundYOffset(await  calcGroundYOffset(containerWidth, containerHeight, currentNode.imageUrl, PERCENTAGE_FROM_BOTTOM_OF_IMAGE));
-      }
-      if(viewState.isLoading){
+        setGroundYOffset(
+          await calcGroundYOffset(
+            containerWidth,
+            containerHeight,
+            currentNode.imageUrl,
+            PERCENTAGE_FROM_BOTTOM_OF_IMAGE
+          )
+        );
+      };
+      if (viewState.isLoading) {
         return;
       }
       groundPosition();
-    }, [currentNode, viewState])
+    }, [currentNode, viewState]);
 
     if (viewState.isLoading) {
       return <div>Loading</div>;
@@ -70,14 +77,16 @@ export const Navigation = observer(
           />
           <ImageWrapper src={currentNode.imageUrl} ref={ref}>
             <GroundWrapper height={groundYOffset}>
-              {
-                arrow ? (
-                  <StyledImage src={getArrowImgSrc(arrow.type)} x={arrow.x} y={arrow.y}/>
-                ): null 
-              }
+              {arrow ? (
+                <StyledImage
+                  src={getArrowImgSrc(arrow.type)}
+                  x={arrow.x}
+                  y={arrow.y}
+                />
+              ) : null}
             </GroundWrapper>
           </ImageWrapper>
-          <Progress percentage={progress}/>
+          <Progress percentage={progress} />
           <BottomNav
             onNext={goNext}
             onPrev={goPrev}
@@ -123,26 +132,26 @@ const ImageWrapper = styled.div<IImageWrapper>`
   overflow: hidden;
 `;
 
-interface IGroundWrapper{
+interface IGroundWrapper {
   height: number;
 }
 const GroundWrapper = styled.div<IGroundWrapper>`
   width: 100%;
   position: absolute;
   height: 50%;
-  top: ${props=>props.height}px;
+  top: ${props => props.height}px;
   transform: perspective(50em) rotateX(70deg);
   transform-origin: center top;
   display: flex;
   justify-content: center;
-`
-interface IStyledImage{
+`;
+interface IStyledImage {
   x: number;
-  y: number
+  y: number;
 }
 const StyledImage = styled.img<IStyledImage>`
-  margin-left: ${props=>props.x}px;
-  margin-top: ${props=>props.y}px;
+  margin-left: ${props => props.x}px;
+  margin-top: ${props => props.y}px;
   image-rendering: -webkit-optimize-contrast;
   width: 220px;
   height: 880px;
@@ -150,16 +159,16 @@ const StyledImage = styled.img<IStyledImage>`
   animation-duration: 2.4s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-  
+
   @keyframes pulse {
-    0%   {
+    0% {
       opacity: 0.96;
     }
-    50%  {
+    50% {
       opacity: 0.86;
     }
     100% {
       opacity: 0.96;
     }
   }
-`
+`;
