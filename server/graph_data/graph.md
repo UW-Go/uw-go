@@ -78,7 +78,7 @@
         right_adj_list: [],
         longitude: 43.47303,
         latitude: -80.53969,
-        name: "E7 4th Floor Elevator Exit",
+        name: "E7 3rd Floor Elevator Exit",
         image: str,
     },
     8: {
@@ -114,7 +114,7 @@
         right_adj_list: [],
         longitude: 43.47267,
         latitude: -80.54,
-        name: "E5 Bridge Entrance",
+        name: "E5 Bridge",
         image: str,
     },
 }
