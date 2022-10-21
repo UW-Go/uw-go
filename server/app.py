@@ -1,5 +1,5 @@
 from flask import Flask
-from server.locations import Locations
+from locations import Locations
 
 app = Flask(__name__)
 
