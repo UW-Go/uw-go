@@ -18,17 +18,17 @@ class Locations:
         self.id_nodes_map = {}
         self.name_id_map = {}
 
-    def get_location_node(self, location_id):
+    def get_location_node(self, location_id: int):
         return self.id_nodes_map.get(location_id, None)
 
-    def set_location_node(self, location_id, location_node):
+    def set_location_node(self, location_id: int, location_node: LocationNode):
         self.id_nodes_map[location_id] = location_node
         return location_node
 
-    def get_location_id(self, location_name):
+    def get_location_id(self, location_name: str):
         return self.name_id_map.get(location_name, None)
 
-    def add_location(self, location_name):
+    def add_location(self, location_name: str):
         if location_name in self.name_id_map:
             # duplicate location
             raise Exception(f'{location_name} is already a location!')
@@ -51,7 +51,7 @@ class LocationNode:
     Methods
     -------
     '''
-    def __init__(self, direction, title, arrow):
+    def __init__(self, direction: str, title: str, arrow: str):
         self.direction = direction
         self.title = title
         self.arrow = arrow
