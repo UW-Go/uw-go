@@ -44,14 +44,20 @@ class LocationNode:
     ...
     Attributes
     -----------
-    direction: str
-    title: str
-    arrow: str
+    id: int
+    name: str
+    instruction: Instruction
+    imageURL: str
+    overlayItems: {
+        arrow: Arrow | None
+    }
 
     Methods
     -------
     '''
-    def __init__(self, direction: str, title: str, arrow: str):
-        self.direction = direction
-        self.title = title
-        self.arrow = arrow
+    def __init__(self, id: int, name: str, instruction: Instruction, image_url: str, overlay_items: dict):
+        self.id = id
+        self.name = name
+        self.instruction = instruction
+        self.image_url = image_url
+        self.overlay_items = overlay_items
