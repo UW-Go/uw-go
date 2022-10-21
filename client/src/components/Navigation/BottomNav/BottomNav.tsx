@@ -49,7 +49,7 @@ const MainWrapper = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${blue[800]};
-  padding: 8px;
+  padding: 16px;
   box-sizing: border-box;
 `;
 

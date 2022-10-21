@@ -30,7 +30,13 @@
             "icon": 0
           },
           "imageUrl": "https://thumbs.dreamstime.com/b/modern-university-science-building-10927221.jpg",
-          "overlayItems": []
+          "overlayItems": {
+            "arrow": {
+              "x": 0,
+              "y" : 0,
+              "type" : 0
+            }
+          }
         },
         {
           "id": "2",
@@ -41,7 +47,30 @@
             "icon": 1
           },
           "imageUrl": "https://campusguides.ca/wp-content/uploads/2021/09/brief-history-of-the-university-of-waterloo-scaled.jpg",
-          "overlayItems": []
+          "overlayItems": {
+            "arrow": {
+              "x": 0,
+              "y" : 100,
+              "type" : 1
+            }
+          }
+        },
+        {
+          "id": "3",
+          "name": "Name_3",
+          "instruction": {
+            "title": "Instruction Title3",
+            "description": "This is a description3",
+            "icon": 2
+          },
+          "imageUrl": "https://perkinswill.com/wp-content/uploads/2019/07/Project_Eng5_7_09-1410x1841.jpg",
+          "overlayItems": {
+            "arrow": {
+              "x": 0,
+              "y" : 50,
+              "type" : 2
+            }
+          }
         }
       ],
       "arrivalTime": "12:39"

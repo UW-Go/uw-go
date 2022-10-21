@@ -15,20 +15,20 @@ interface Instruction {
   icon: IconType;
 }
 
-enum ArrowType {
+export enum ArrowType {
   STRAIGHT,
   LEFT,
   RIGHT,
 }
 
-interface Arrow {
+export interface Arrow {
   x: number;
   y: number;
   type: ArrowType;
 }
 
 interface OverlayItems {
-  arrows: Arrow[];
+  arrow: Arrow;
 }
 
 export interface Node extends NodeListItem {
