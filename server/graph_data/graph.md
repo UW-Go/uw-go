@@ -25,7 +25,7 @@
         longitude: 43.47316,
         latitude: -80.5399,
         name: "E7 4043"
-        image: str,
+        image: "https://ibb.co/RTmNW4M",
     },
     2: {
         fwd_adj_list: [],
@@ -34,7 +34,7 @@
         longitude: 43.4731,
         latitude: -80.5397,
         name: "E7 4th Floor Intersection",
-        image: str,
+        image: "https://ibb.co/k14zNBw",
     },
     3: {
         fwd_adj_list: [7],
@@ -43,7 +43,7 @@
         longitude: 43.47303,
         latitude: -80.53969,
         name: "E7 4th Floor Elevator Entrance",
-        image: str,
+        image: "https://ibb.co/ZK78Mgc",
     },
     4: {
         fwd_adj_list: [5],
@@ -52,7 +52,7 @@
         longitude: 43.47296,
         latitude: -80.53982,
         name: "E7 4th Floor Doorway Intersection",
-        image: str,
+        image: "https://ibb.co/cDqLSQP",
     },
     5: {
         fwd_adj_list: [6],
@@ -61,7 +61,7 @@
         longitude: 43.47283,
         latitude: -80.53986,
         name: "E5 4th Floor to 3rd Floor Stairway Entrance",
-        image: str,
+        image: "https://ibb.co/pKhvNhh",
     },
     6: {
         fwd_adj_list: [],
@@ -70,7 +70,7 @@
         longitude: 43.4726,
         latitude: -80.54,
         name: "E5 4th Floor to 3rd Floor Stairway Exit",
-        image: str,
+        image: "https://ibb.co/SPVwPWV",
     },
     7: {
         fwd_adj_list: [],
@@ -79,7 +79,7 @@
         longitude: 43.47303,
         latitude: -80.53969,
         name: "E7 3rd Floor Elevator Exit",
-        image: str,
+        image: "https://ibb.co/k4SCpkd",
     },
     8: {
         fwd_adj_list: [9],
@@ -88,7 +88,7 @@
         longitude: 43.47289,
         latitude: -80.53978,
         name: "E7 3rd Floor Hallway",
-        image: str,
+        image: "https://ibb.co/Px8gSp3",
     },
     9: {
         fwd_adj_list: [10],
@@ -97,7 +97,7 @@
         longitude: 43.47273,
         latitude: -80.54001,
         name: "E7 3rd Floor Hallway Left of Stairs",
-        image: str,
+        image: "https://ibb.co/bbFbPYp",
     },
     10: {
         fwd_adj_list: [],
@@ -106,7 +106,7 @@
         longitude: 43.47263,
         latitude: -80.54,
         name: "E5 3rd Floor End of Hallway Next to Stairs",
-        image: str,
+        image: "https://ibb.co/4mbtBXW",
     },
     11: {
         fwd_adj_list: [],
@@ -115,7 +115,7 @@
         longitude: 43.47267,
         latitude: -80.54,
         name: "E5 Bridge",
-        image: str,
+        image: "https://ibb.co/4gHYMm3",
     },
 }
 ```
