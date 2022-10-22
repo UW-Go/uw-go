@@ -13,6 +13,7 @@ export class NavigationViewState {
   private getNodesResponse?: IPromiseBasedObservable<NavigationResponse>;
   private _i = 0;
   private _isLoading = true;
+  private _showTooltip = true;
   get isLoading() {
     return this._isLoading;
   }
@@ -72,13 +73,15 @@ export class NavigationViewState {
   }
 
   get progress(): number {
-    if (this._i == 0) {
-      return 0;
-    }
     return (this._i / (this.nodes.length - 1)) * 100;
   }
 
+  get images(): string[] {
+    return this.nodes.map(item => item.imageUrl);
+  }
+
   goNext = () => {
+    this._showTooltip = false;
     if (this.hasNext) {
       this._i += 1;
     }
@@ -89,4 +92,16 @@ export class NavigationViewState {
       this._i--;
     }
   };
+
+  get showTooltip(): boolean {
+    return this._showTooltip;
+  }
+
+  setTooltip = (val: boolean) => {
+    this._showTooltip = val;
+  };
+
+  get isLastStep(): boolean {
+    return this._i === this.nodes.length - 1;
+  }
 }

@@ -38,7 +38,6 @@ export const Navigation = (): JSX.Element => {
 };
 
 const MainWrapper = styled.div`
-  background-color: #bbb;
   height: 100vh;
   box-sizing: border-box;
 `;

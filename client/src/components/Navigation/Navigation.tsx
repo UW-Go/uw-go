@@ -8,6 +8,9 @@ import { BottomNav } from "components/Navigation/BottomNav/BottomNav";
 import { TopNav } from "components/Navigation/TopNav/TopNav";
 import { calcGroundYOffset, getArrowImgSrc } from "utils/navigation";
 import { Progress } from "components/Navigation/Progress/Progress";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Fab from "@material-ui/core/Fab";
+import CloseIcon from "@material-ui/icons/Close";
 
 interface INavigation {
   start: string;
@@ -15,11 +18,13 @@ interface INavigation {
   avoidances: Avoidances;
 }
 
-const PERCENTAGE_FROM_BOTTOM_OF_IMAGE = 0.25;
+const PERCENTAGE_FROM_BOTTOM_OF_IMAGE = 0.5;
+const DIV_ROTATION_DEGREES = 77;
 
 export const Navigation = observer(
   ({ start, end, avoidances }: INavigation) => {
     const [viewState] = useState(() => new NavigationViewState());
+    const [areImagesLoading, setAreImagesLoading] = useState(true);
     const [groundYOffset, setGroundYOffset] = useState(0);
     const {
       currentNode,
@@ -33,6 +38,8 @@ export const Navigation = observer(
       instructionIcon,
       arrow,
       progress,
+      showTooltip,
+      isLastStep,
     } = viewState;
 
     useEffect(
@@ -42,6 +49,12 @@ export const Navigation = observer(
         }),
       []
     );
+
+    useEffect(() => {
+      if (!viewState.isLoading) {
+        cacheImages([...viewState.images]);
+      }
+    }, [viewState.isLoading]);
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -58,14 +71,32 @@ export const Navigation = observer(
           )
         );
       };
-      if (viewState.isLoading) {
+      if (viewState.isLoading || areImagesLoading) {
         return;
       }
       groundPosition();
-    }, [currentNode, viewState]);
+    }, [currentNode, viewState, areImagesLoading]);
 
-    if (viewState.isLoading) {
-      return <div>Loading</div>;
+    const cacheImages = async (images: string[]) => {
+      const promises = await images.map(src => {
+        return new Promise<void>((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = () => resolve();
+          img.onerror = () => reject();
+        });
+      });
+
+      await Promise.all(promises);
+      setAreImagesLoading(false);
+    };
+
+    if (viewState.isLoading || areImagesLoading) {
+      return (
+        <LoaderWrapper>
+          <CircularProgress />
+        </LoaderWrapper>
+      );
     }
     return (
       <MainWrapper>
@@ -75,7 +106,7 @@ export const Navigation = observer(
             description={instructionDescription}
             icon={instructionIcon}
           />
-          <ImageWrapper src={currentNode.imageUrl} ref={ref}>
+          <ImageWrapper src={currentNode?.imageUrl ?? ""} ref={ref}>
             <GroundWrapper height={groundYOffset}>
               {arrow ? (
                 <StyledImage
@@ -85,6 +116,16 @@ export const Navigation = observer(
                 />
               ) : null}
             </GroundWrapper>
+            <FabWrapper>
+              <StyledFab
+                size="large"
+                variant="extended"
+                color="primary"
+                show={isLastStep}
+              >
+                End Navigation <CloseIcon />
+              </StyledFab>
+            </FabWrapper>
           </ImageWrapper>
           <Progress percentage={progress} />
           <BottomNav
@@ -93,6 +134,7 @@ export const Navigation = observer(
             canNext={hasNext}
             canPrev={hasPrev}
             arrivalTime={navResponse?.arrivalTime ?? ""}
+            showTooltip={showTooltip}
           />
         </NavWrapper>
       </MainWrapper>
@@ -100,11 +142,39 @@ export const Navigation = observer(
   }
 );
 
+interface IStyledFab {
+  show: boolean;
+}
+const StyledFab = styled(Fab)<IStyledFab>`
+  && {
+    position: absolute;
+    top: ${props => (props.show ? 0 : 100)}px;
+    transition: top 0.3s ease;
+  }
+`;
+
+const FabWrapper = styled.div`
+  height: 72px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+`;
 const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
+`;
+
+const LoaderWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
 `;
 
 const NavWrapper = styled.div`
@@ -130,6 +200,7 @@ const ImageWrapper = styled.div<IImageWrapper>`
   flex-direction: column-reverse;
   position: relative;
   overflow: hidden;
+  align-items: center;
 `;
 
 interface IGroundWrapper {
@@ -138,9 +209,9 @@ interface IGroundWrapper {
 const GroundWrapper = styled.div<IGroundWrapper>`
   width: 100%;
   position: absolute;
-  height: 50%;
+  height: 100%;
   top: ${props => props.height}px;
-  transform: perspective(50em) rotateX(70deg);
+  transform: perspective(50em) rotateX(${DIV_ROTATION_DEGREES}deg);
   transform-origin: center top;
   display: flex;
   justify-content: center;

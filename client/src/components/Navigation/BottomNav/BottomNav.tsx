@@ -7,6 +7,8 @@ import blue from "@material-ui/core/colors/blue";
 import { Spacer } from "components/Spacer/Spacer";
 import { observer } from "mobx-react-lite";
 import { Typography } from "components/MUI/Typography";
+import Tooltip, { TooltipProps } from "@material-ui/core/Tooltip";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 
 interface IButtonNav {
   onNext: () => void;
@@ -14,9 +16,36 @@ interface IButtonNav {
   canNext: boolean;
   canPrev: boolean;
   arrivalTime: string;
+  showTooltip: boolean;
 }
+
+const useStylesBootstrap = makeStyles((theme: Theme) => ({
+  arrow: {
+    color: "#131313",
+  },
+  tooltip: {
+    backgroundColor: "#131313",
+    fontSize: 18,
+    padding: 16,
+    top: 16,
+  },
+}));
+
+function BootstrapTooltip(props: TooltipProps) {
+  const classes = useStylesBootstrap();
+
+  return <Tooltip arrow classes={classes} {...props} />;
+}
+
 export const BottomNav = observer(
-  ({ onNext, onPrev, canNext, canPrev, arrivalTime }: IButtonNav) => {
+  ({
+    onNext,
+    onPrev,
+    canNext,
+    canPrev,
+    arrivalTime,
+    showTooltip,
+  }: IButtonNav) => {
     return (
       <MainWrapper>
         <IconButtonWrapper isDisabled={!canPrev}>
@@ -34,10 +63,18 @@ export const BottomNav = observer(
           </Typography>
         </TextWrapper>
         <Spacer width={16} />
+
         <IconButtonWrapper isDisabled={!canNext}>
-          <IconButton onClick={onNext} disabled={!canNext}>
-            <StyledRightIcon />
-          </IconButton>
+          <BootstrapTooltip
+            title="Tap this arrow to continue"
+            arrow
+            open={showTooltip}
+            placement="top"
+          >
+            <IconButton onClick={onNext} disabled={!canNext}>
+              <StyledRightIcon />
+            </IconButton>
+          </BootstrapTooltip>
         </IconButtonWrapper>
       </MainWrapper>
     );
@@ -77,4 +114,10 @@ interface IIconButton {
 }
 const IconButtonWrapper = styled.div<IIconButton>`
   opacity: ${props => (props.isDisabled ? "0.2" : "1")};
+`;
+
+const StyledTooltip = styled(Tooltip)`
+  .MuiTooltip-popper .MuiTooltip-tooltip {
+    background-color: red !important;
+  }
 `;
