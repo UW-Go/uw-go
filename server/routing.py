@@ -4,7 +4,6 @@ from collections import deque
 
 cur_path = os.path.dirname(__file__)
 graph_file_path = os.path.join(cur_path, "graph_data", "graph.json")
-
 graph = {}
 directions = {
     "R": "right_adj_list",
@@ -56,7 +55,8 @@ def routeToDest(start, end):
                     seen[neighbour] = (cur, d)
                     queue.append(neighbour)
     
-def getRouteNodes(start, end):
+def getRouteNodes(start, end, use_elevator):
+    use_elevator = use_elevator
     route = routeToDest(start, end)
     nodes = []
     for i in range(0, len(route), 2):
