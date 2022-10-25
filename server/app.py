@@ -36,10 +36,11 @@ def get_locations():
 def get_route():
     start = request.args.get('start')
     dest = request.args.get('dest')
+    elevator = request.args.get('elevator', False)
 
     try: 
         rs = RoutingService()
-        route = rs.compute_route(start, dest)
+        route = rs.compute_route(start, dest, elevator)
     except Exception as err:
         return jsonify(
             {"message": "Error computing route"}
