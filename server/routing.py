@@ -10,12 +10,12 @@ directions = {
     "L": "left_adj_list",
     "F": "fwd_adj_list"
 }
-directionInstructions = {
+direction_instructions = {
     "R": "RIGHT",
     "L": "LEFT",
     "F": "STRAIGHT"
 }
-directionIcons = {
+direction_icons = {
     "R": 2,
     "L": 1,
     "F": 0
@@ -26,7 +26,7 @@ use_elevator = False
 with open(graph_file_path) as graph_file:
     graph = json.load(graph_file)
 
-def createPath(seen, end, start):
+def create_path(seen, end, start):
     curr = end
     path = []
     while curr != start:
@@ -39,7 +39,7 @@ def createPath(seen, end, start):
     return path[::-1]
     
 
-def routeToDest(start, end):
+def route_to_dest(start, end):
     seen = {}
     queue = deque()
     queue.append(start)
@@ -50,36 +50,36 @@ def routeToDest(start, end):
                 neighbour = str(neighbour)
                 if neighbour == end:
                     seen[neighbour] = (cur, d)
-                    return createPath(seen, end, start)
+                    return create_path(seen, end, start)
                 elif use_elevator == graph[neighbour]["elevator"]:
                     seen[neighbour] = (cur, d)
                     queue.append(neighbour)
     
-def getRouteNodes(start, end, use_elevator):
+def get_route_nodes(start, end, use_elevator):
     use_elevator = use_elevator
-    route = routeToDest(start, end)
+    route = route_to_dest(start, end)
     nodes = []
     for i in range(0, len(route), 2):
-        currNode = {}
-        currNode["id"] = route[i]
-        currNode["name"] = graph[route[i]]["name"]
+        curr_node = {}
+        curr_node["id"] = route[i]
+        curr_node["name"] = graph[route[i]]["name"]
         if i < len(route) -1:
-            currNode["instruction"] = { 
+            curr_node["instruction"] = { 
                 "title": graph[route[i]]["name"],
-                "description": "GO " + directionInstructions[route[i+1]],
-                "icon": directionIcons[route[i+1]]
+                "description": "GO " + direction_instructions[route[i+1]],
+                "icon": direction_icons[route[i+1]]
             }
-            currNode["overlayItems"] = {
+            curr_node["overlayItems"] = {
                 "x":0,
                 "y":20,
-                "type": directionIcons[route[i+1]]
+                "type": direction_icons[route[i+1]]
             }
         else:
-            currNode["instruction"] = { 
+            curr_node["instruction"] = { 
                 "title": graph[route[i]]["name"],
                 "description": "YOU HAVE ARRIVED",
                 "icon": 3
             }
-        currNode["imageURL"] = graph[route[i]]["image"]
-        nodes.append(currNode)
+        curr_node["imageURL"] = graph[route[i]]["image"]
+        nodes.append(curr_node)
     return nodes
