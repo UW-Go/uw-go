@@ -1,5 +1,6 @@
 {
     "1":{
+      "elevator": true,
        "fwd_adj_list":[
           
        ],
@@ -15,6 +16,7 @@
        "image":"https://i.ibb.co/8gpbV4R/E7-4043.jpg"
     },
     "2":{
+      "elevator": true,
        "fwd_adj_list":[
           
        ],
@@ -30,6 +32,7 @@
        "image":"https://i.ibb.co/vY3f0qT/E7-4th-Floor-Intersection.jpg"
     },
     "3":{
+      "elevator": true,
        "fwd_adj_list":[
           7
        ],
@@ -45,6 +48,7 @@
        "image":"https://i.ibb.co/1KjqmXR/E7-4th-Floor-Elevator-Entrance.jpg"
     },
     "4":{
+      "elevator": true,
        "fwd_adj_list":[
           5
        ],
@@ -60,6 +64,7 @@
        "image":"https://i.ibb.co/kQZ1sXp/E7-4th-Floor-Doorway-Intersection.jpg"
     },
     "5":{
+      "elevator": true,
        "fwd_adj_list":[
           6
        ],
@@ -75,6 +80,7 @@
        "image":"https://i.ibb.co/Jp3R833/E5-4th-Floor-to-3rd-Floor-Stairway-Entrance.jpg"
     },
     "6":{
+      "elevator": true,
        "fwd_adj_list":[
           
        ],
@@ -90,6 +96,7 @@
        "image":"https://i.ibb.co/hy2Fyh2/E5-4th-Floor-to-3rd-Floor-Stairway-Exit.jpg"
     },
     "7":{
+      "elevator": true,
        "fwd_adj_list":[
           
        ],
@@ -105,6 +112,7 @@
        "image":"https://i.ibb.co/Pc6HR3S/E7-3rd-Floor-Elevator-Exit.jpg"
     },
     "8":{
+      "elevator": true,
        "fwd_adj_list":[
           9
        ],
@@ -120,6 +128,7 @@
        "image":"https://i.ibb.co/SNpBLTW/E7-3rd-Floor-Hallway.jpg"
     },
     "9":{
+      "elevator": true,
        "fwd_adj_list":[
           10
        ],
@@ -135,6 +144,7 @@
        "image":"https://i.ibb.co/XYDYb6m/E7-3rd-Floor-Hallway-Left-of-Stairs.jpg"
     },
     "10":{
+      "elevator": true,
        "fwd_adj_list":[
           
        ],
@@ -150,6 +160,7 @@
        "image":"https://i.ibb.co/SskyqMN/E5-3rd-Floor-End-of-Hallway-Next-to-Stairs.jpg"
     },
     "11":{
+      "elevator": true,
        "fwd_adj_list":[
           
        ],
