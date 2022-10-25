@@ -1,0 +1,50 @@
+{
+  "locations": [
+    {
+      "id": "1",
+      "name": "E7 4043"
+    },
+    {
+      "id": "2",
+      "name": "STC 0060"
+    },
+    {
+      "id": "3",
+      "name": "MC 1085"
+    },
+    {
+      "id": "5",
+      "name": "E2 2035"
+    }
+  ],
+  "route": [
+    {
+      "id": "1",
+      "nodes": [
+        {
+          "id": "1",
+          "name": "Name_1",
+          "instruction": {
+            "title": "Instruction Title",
+            "description": "This is a description",
+            "icon": 0
+          },
+          "imageUrl": "https://thumbs.dreamstime.com/b/modern-university-science-building-10927221.jpg",
+          "overlayItems": []
+        },
+        {
+          "id": "2",
+          "name": "Name_2",
+          "instruction": {
+            "title": "Instruction Title2",
+            "description": "This is a description2",
+            "icon": 1
+          },
+          "imageUrl": "https://campusguides.ca/wp-content/uploads/2021/09/brief-history-of-the-university-of-waterloo-scaled.jpg",
+          "overlayItems": []
+        }
+      ],
+      "arrivalTime": "12:39"
+    }
+  ]
+}
