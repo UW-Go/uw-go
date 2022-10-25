@@ -1,31 +1,53 @@
-from flask import Flask
-from locations import Locations
+from flask import Flask, jsonify, request
+from os import path
+import json
+from http import HTTPStatus
+
+from services.routing_service import RoutingService
 
 app = Flask(__name__)
 
-# location information storage cache
-locations = Locations()
-
-
 @app.route('/')
-def hello_world():
+def sample_endpoint():
     return 'Hello World!'
 
+@app.route('/api/locations', methods=['GET'])
+def get_locations():
+    '''
+    Get all of the location nodes in the system
+    '''
 
-@app.route('/home')
-def home():
-    return 'Home Page!'
+    try:
+        rs = RoutingService()
+        graph_data = rs.get_graph_data()
+        locations_data = rs.get_location_data()
+    except Exception as err:
+        return jsonify(
+            {"message": f"Error opening graph files, {err}"}
+        ), HTTPStatus.BAD_REQUEST.value
 
-
-@app.route('/api/locations')
-def locations():
-    return locations
+    return jsonify(
+        {"graphData": graph_data, "locationsData": locations_data}
+    ), HTTPStatus.OK.value
 
 
 @app.route('/api/route')
-def route():
-    return 'Route!'
+def get_route():
+    start = request.args.get('start')
+    dest = request.args.get('dest')
+    elevator = request.args.get('elevator', False)
 
+    try: 
+        rs = RoutingService()
+        route = rs.compute_route(start, dest, elevator)
+    except Exception as err:
+        return jsonify(
+            {"message": f"Error computing route, {err}"}
+        ), HTTPStatus.BAD_REQUEST.value
+
+    return jsonify(
+        {'nodes': route, 'arrivalTime' : "NULLTIME"}
+    ), HTTPStatus.OK.value
 
 if __name__ == '__main__':
     app.run()
