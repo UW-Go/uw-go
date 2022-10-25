@@ -37,7 +37,7 @@ def get_route():
     dest = request.args.get('dest')
     elevator = request.args.get('elevator', False)
 
-    try: 
+    try:
         rs = RoutingService()
         route = rs.compute_route(start, dest, elevator)
     except Exception as err:
