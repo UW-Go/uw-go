@@ -7,7 +7,6 @@ from services.routing_service import RoutingService
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def sample_endpoint():
     return 'Hello World!'
@@ -43,7 +42,7 @@ def get_route():
         route = rs.compute_route(start, dest, elevator)
     except Exception as err:
         return jsonify(
-            {"message": "Error computing route"}
+            {"message": f"Error computing route, {err}"}
         ), HTTPStatus.BAD_REQUEST.value
 
     return jsonify(

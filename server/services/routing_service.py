@@ -15,6 +15,6 @@ class RoutingService:
 
     def compute_route(self, start, dest, elevator):
         location_data = self.get_location_data()
-        startID = location_data[start]
-        destID = location_data[dest]
+        startID = str(location_data[start])
+        destID = str(location_data[dest])
         return get_route_nodes(startID, destID, elevator)
