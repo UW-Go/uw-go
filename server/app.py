@@ -26,9 +26,12 @@ def get_locations():
             {"message": f"Error opening graph files, {err}"}
         ), HTTPStatus.BAD_REQUEST.value
 
-    return jsonify(
+    response = jsonify(
         {"graphData": graph_data, "locationsData": locations_data}
-    ), HTTPStatus.OK.value
+    )
+    response.status_code = HTTPStatus.OK.value
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @app.route('/api/route')

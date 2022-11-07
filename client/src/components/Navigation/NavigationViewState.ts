@@ -7,7 +7,7 @@ import {
   IconType,
   Arrow,
 } from "types/types";
-import { Requests } from "classes/requests/requests";
+import Requests from "classes/requests/requests";
 
 export class NavigationViewState {
   private getNodesResponse?: IPromiseBasedObservable<NavigationResponse>;
