@@ -1,13 +1,14 @@
 import axios from "axios";
 import { NodeListItem, NavigationResponse, Avoidances } from "types/types";
 
+const BASE_URL = process.env.REACT_APP_BACKEND_ROUTES ? "http://localhost:8000/api" : "http://localhost:3001"
 export class Requests {
   private static get url() {
-    return "http://localhost:3001";
+    return BASE_URL;
   }
   static getLocations = async (): Promise<NodeListItem[]> => {
     const data = await axios.get(`${this.url}/locations`);
-    return data.data;
+    return data.data.locationsData;
   };
 
   static getNavigation = async (
@@ -19,3 +20,5 @@ export class Requests {
     return data.data;
   };
 }
+
+export default Requests;

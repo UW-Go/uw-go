@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
 import { NodeListItem } from "types/types";
-import { Requests } from "classes/requests/requests";
+import Requests from "classes/requests/requests";
 
 export enum Avoidance {
   ELEVATORS = "Elevators",

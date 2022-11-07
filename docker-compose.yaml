@@ -1,0 +1,21 @@
+version: "3"
+services:
+  frontend:
+    stdin_open: true
+    environment:
+      - REACT_APP_BACKEND_ROUTES=true
+    build:
+        context: ./client
+    ports:
+        - 3000:3000
+    volumes:
+        - ./client:/app
+  backend:
+    stdin_open: true
+    build: 
+       context: ./server
+    ports:
+      - 8000:5000
+    volumes:
+      - ./server:/app
+    
