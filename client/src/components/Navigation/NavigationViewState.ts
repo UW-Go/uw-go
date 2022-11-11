@@ -94,7 +94,7 @@ export class NavigationViewState {
   };
 
   get showTooltip(): boolean {
-    return this._showTooltip;
+    return this._i == 0;
   }
 
   setTooltip = (val: boolean) => {

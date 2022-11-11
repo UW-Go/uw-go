@@ -11,6 +11,8 @@ import { Progress } from "components/Navigation/Progress/Progress";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
+import green from "@material-ui/core/colors/green";
+
 
 interface INavigation {
   start: string;
@@ -52,7 +54,7 @@ export const Navigation = observer(
 
     useEffect(() => {
       if (!viewState.isLoading) {
-        cacheImages([...viewState.images]);
+        cacheImages([...viewState.images, "leftArrow.png", "rightArrow.png", "straightArrow.png"]);
       }
     }, [viewState.isLoading]);
 
@@ -120,8 +122,8 @@ export const Navigation = observer(
               <StyledFab
                 size="large"
                 variant="extended"
-                color="primary"
                 show={isLastStep}
+                disabled={!isLastStep}
               >
                 End Navigation <CloseIcon />
               </StyledFab>
@@ -150,6 +152,8 @@ const StyledFab = styled(Fab)<IStyledFab>`
     position: absolute;
     top: ${props => (props.show ? 0 : 100)}px;
     transition: top 0.3s ease;
+    background-color: ${green[600]}!important;
+    color: white;
   }
 `;
 

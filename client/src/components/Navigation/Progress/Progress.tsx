@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import LocationIcon from "@material-ui/icons/LocationOn";
 import blue from "@material-ui/core/colors/blue";
+import green from "@material-ui/core/colors/green";
 
 interface IProgress {
   percentage: number;
@@ -26,10 +27,10 @@ interface IProgressStrip {
   progress: number;
 }
 const ProgressStrip = styled.div<IProgressStrip>`
-  background-color: ${blue[300]};
+  background-color: ${props=>props.progress === 100 ? green["A400"]:blue[300]};
   height: 100%;
   width: ${props => props.progress}%;
-  transition: width 0.5s ease;
+  transition: all 0.5s ease;
 `;
 interface IProgressStrip {
   progress: number;
@@ -41,7 +42,7 @@ const StyledLocationIcon = styled(LocationIcon)<IProgressStrip>`
     position: absolute;
     left: calc(${props => props.progress}% - 16px);
     bottom: -3px;
-    fill: ${blue[900]};
+    fill: ${props=>props.progress === 100 ? green[700]:blue[900]};
     transition: left 0.5s ease;
   }
 `;

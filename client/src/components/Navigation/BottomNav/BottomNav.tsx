@@ -66,7 +66,7 @@ export const BottomNav = observer(
 
         <IconButtonWrapper isDisabled={!canNext}>
           <BootstrapTooltip
-            title="Tap this arrow to continue"
+            title="Tap to continue"
             arrow
             open={showTooltip}
             placement="top"
@@ -116,8 +116,3 @@ const IconButtonWrapper = styled.div<IIconButton>`
   opacity: ${props => (props.isDisabled ? "0.2" : "1")};
 `;
 
-const StyledTooltip = styled(Tooltip)`
-  .MuiTooltip-popper .MuiTooltip-tooltip {
-    background-color: red !important;
-  }
-`;
