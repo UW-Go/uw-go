@@ -18,3 +18,14 @@ class RoutingService:
         startID = str(location_data[start])
         destID = str(location_data[dest])
         return get_route_nodes(startID, destID, elevator)
+    
+    def get_destinations_as_list(self):
+        dao = RoutingDao()
+        locations = dao.get_locations_map()
+        destinations = []
+        for location in locations:
+            destinations.append({
+                "name": location,
+                "id": str(locations[location])
+            })
+        return destinations
