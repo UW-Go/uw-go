@@ -69,7 +69,7 @@ export class NavigationViewState {
   }
 
   get arrow(): Arrow | undefined {
-    return this.currentNode?.overlayItems.arrow;
+    return this.currentNode?.overlayItems;
   }
 
   get progress(): number {
@@ -77,7 +77,7 @@ export class NavigationViewState {
   }
 
   get images(): string[] {
-    return this.nodes.map(item => item.imageUrl);
+    return this.nodes.map(item => item.imageURL);
   }
 
   goNext = () => {

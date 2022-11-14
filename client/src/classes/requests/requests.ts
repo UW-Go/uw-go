@@ -8,7 +8,7 @@ export class Requests {
   }
   static getLocations = async (): Promise<NodeListItem[]> => {
     const data = await axios.get(`${this.url}/locations`);
-    return data.data.locationsData;
+    return data.data.nodes;
   };
 
   static getNavigation = async (
@@ -16,7 +16,9 @@ export class Requests {
     endId: string,
     avoidances: Avoidances
   ): Promise<NavigationResponse> => {
-    const data = await axios.get(`${this.url}/route/1`);
+    const data = process.env.REACT_APP_BACKEND_ROUTES ? 
+      await axios.get(`${this.url}/route?start=${startId}&end=${endId}&options=${JSON.stringify(avoidances)}`) : 
+      await axios.get(`${this.url}/route/1`);
     return data.data;
   };
 }

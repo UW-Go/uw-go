@@ -14,7 +14,24 @@ class RoutingService:
         return dao.get_locations_map()
 
     def compute_route(self, start, dest, elevator):
-        location_data = self.get_location_data()
-        startID = str(location_data[start])
-        destID = str(location_data[dest])
-        return get_route_nodes(startID, destID, elevator)
+        # location_data = self.get_location_data()
+        # startID = str(location_data[start])
+        # destID = str(location_data[dest])
+        print(start)
+        print(dest)
+        route = get_route_nodes(start, dest, elevator)
+        return route
+    
+    def get_destinations_as_list(self):
+        dao = RoutingDao()
+        locations = dao.get_locations_map()
+        destinations = []
+        for location in locations:
+            destinations.append({
+                "name": location,
+                "id": str(locations[location])
+            })
+        return destinations
+    
+    def get_filtered_destinations_list(self):
+        return list(filter(lambda x: (x["id"] == "1" or x["id"] == "11"), self.get_destinations_as_list()))
