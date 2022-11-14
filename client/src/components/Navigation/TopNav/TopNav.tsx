@@ -5,6 +5,7 @@ import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import { Spacer } from "components/Spacer/Spacer";
 import { IconType } from "types/types";
 import LeftIcon from "@material-ui/icons/KeyboardBackspace";
+import RightIcon from '@material-ui/icons/ArrowRightAlt';
 
 interface ITopNav {
   title: string;
@@ -16,6 +17,8 @@ const getIcon = (id: IconType) => {
   switch (id) {
     case IconType.LEFT:
       return <LeftIcon fontSize="large" />;
+    case IconType.RIGHT:
+      return <RightIcon fontSize="large" />; 
     default:
       return <ArrowUpwardIcon fontSize="large" />;
   }
