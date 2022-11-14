@@ -11,9 +11,9 @@ directions = {
     "F": "fwd_adj_list"
 }
 direction_instructions = {
-    "R": "RIGHT",
-    "L": "LEFT",
-    "F": "STRAIGHT"
+    "R": "Turn right",
+    "L": "Turn left",
+    "F": "Continue going straight"
 }
 direction_icons = {
     "R": 2,
@@ -65,8 +65,8 @@ def get_route_nodes(start, end, use_elevator):
         curr_node["name"] = graph[route[i]]["name"]
         if i < len(route) -1:
             curr_node["instruction"] = { 
-                "title": graph[route[i]]["name"],
-                "description": "GO " + direction_instructions[route[i+1]],
+                "title": direction_instructions[route[i+1]],
+                "description": graph[route[i]]["name"],
                 "icon": direction_icons[route[i+1]]
             }
             curr_node["overlayItems"] = {
