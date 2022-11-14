@@ -9,11 +9,10 @@ from util.create_response import send_as_json
 app = Flask(__name__)
 
 @app.route('/api/graph', methods=['GET'])
-def get_locations():
+def get_graph():
     '''
     Get all of the location nodes in the system
     '''
-
     try:
         rs = RoutingService()
         graph_data = rs.get_graph_data()
@@ -36,7 +35,7 @@ def get_locations():
     '''
     try:
         rs = RoutingService()
-        destinations = rs.get_destinations_as_list()
+        destinations = rs.get_filtered_destinations_list()
     except Exception as err:
         return send_as_json(
             {"message": f"Error opening graph files, {err}"},
@@ -50,10 +49,15 @@ def get_locations():
 
 @app.route('/api/route')
 def get_route():
+    
     start = request.args.get('start')
     dest = request.args.get('end')
-    options = request.args.get('options')
-    elevator = options[elevator] if options[elevator] else False
+    print(request.args.get('options'))
+    if request.args.get('options') == None:
+        elevator = False
+    else:
+        options = json.loads(request.args.get('options'))
+        elevator = True if "elevator" in options and options['elevator'] == 'True' else False
     # confirm what options are
 
     try: 

@@ -31,6 +31,14 @@ export class HomeViewstate {
 
   setCurrentId = (id: string) => {
     this._currentId = id;
+    if(this._currentId == this._destinationId){ //adjust if its the same
+      for(let i=0; i<this.locations.length;i++){
+        if(this._destinationId != this.locations[i].id){
+          this._destinationId = this.locations[i].id
+          break;
+        }
+      }
+    }
   };
 
   get currentId() {
@@ -39,6 +47,14 @@ export class HomeViewstate {
 
   setDestinationId = (id: string) => {
     this._destinationId = id;
+    if(this._currentId == this._destinationId){ //adjust if its the same
+      for(let i=0; i<this.locations.length;i++){
+        if(this._currentId != this.locations[i].id){
+          this._currentId = this.locations[i].id
+          break;
+        }
+      }
+    }
   };
 
   get destinationId() {
@@ -61,7 +77,7 @@ export class HomeViewstate {
     return {
       start: this._currentId,
       end: this._destinationId,
-      avoidances: JSON.stringify({ ...this._avoidanceKeys }),
+      options: JSON.stringify({ ...this._avoidanceKeys }),
     };
   }
 
@@ -69,7 +85,7 @@ export class HomeViewstate {
     return (
       this.getNodesResponse?.case({
         fulfilled: data => {
-          if (data.length > 2) {
+          if (data.length >= 2) {
             this._currentId = data[0].id;
             this._destinationId = data[1].id;
             this._isLoading = false;

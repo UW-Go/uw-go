@@ -27,13 +27,15 @@ export interface Arrow {
   type: ArrowType;
 }
 
-interface OverlayItems {
-  arrow: Arrow;
-}
+// interface OverlayItems {
+//   arrow: Arrow;
+// }
+
+type OverlayItems = Arrow;
 
 export interface Node extends NodeListItem {
   instruction: Instruction;
-  imageUrl: string;
+  imageURL: string;
   overlayItems: OverlayItems;
 }
 

@@ -20,6 +20,7 @@ interface INavigation {
 
 const PERCENTAGE_FROM_BOTTOM_OF_IMAGE = 0.5;
 const DIV_ROTATION_DEGREES = 77;
+const TEMP_ARROW_PADDING_Y = 200;
 
 export const Navigation = observer(
   ({ start, end, avoidances }: INavigation) => {
@@ -66,7 +67,7 @@ export const Navigation = observer(
           await calcGroundYOffset(
             containerWidth,
             containerHeight,
-            currentNode.imageUrl,
+            currentNode.imageURL,
             PERCENTAGE_FROM_BOTTOM_OF_IMAGE
           )
         );
@@ -106,13 +107,13 @@ export const Navigation = observer(
             description={instructionDescription}
             icon={instructionIcon}
           />
-          <ImageWrapper src={currentNode?.imageUrl ?? ""} ref={ref}>
+          <ImageWrapper src={currentNode?.imageURL ?? ""} ref={ref}>
             <GroundWrapper height={groundYOffset}>
               {arrow ? (
                 <StyledImage
                   src={getArrowImgSrc(arrow.type)}
                   x={arrow.x}
-                  y={arrow.y}
+                  y={arrow.y + TEMP_ARROW_PADDING_Y}
                 />
               ) : null}
             </GroundWrapper>
