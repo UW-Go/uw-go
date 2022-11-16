@@ -65,8 +65,8 @@ def get_route_nodes(start, end, use_elevator):
         curr_node["name"] = graph[route[i]]["name"]
         if i < len(route) -1:
             curr_node["instruction"] = { 
-                "title": direction_instructions[route[i+1]],
-                "description": graph[route[i]]["name"],
+                "title": graph[route[i]]["name"],
+                "description": direction_instructions[route[i+1]],
                 "icon": direction_icons[route[i+1]]
             }
             curr_node["overlayItems"] = {
