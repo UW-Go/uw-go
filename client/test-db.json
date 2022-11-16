@@ -1,5 +1,5 @@
 {
-  "locations": [
+  "locations": {"nodes":[
     {
       "id": "1",
       "name": "E7 4043"
@@ -16,7 +16,7 @@
       "id": "5",
       "name": "E2 2035"
     }
-  ],
+  ]},
   "route": [
     {
       "id": "1",

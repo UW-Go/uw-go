@@ -11,6 +11,7 @@ import { Progress } from "components/Navigation/Progress/Progress";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Fab from "@material-ui/core/Fab";
 import CloseIcon from "@material-ui/icons/Close";
+import green from "@material-ui/core/colors/green";
 
 interface INavigation {
   start: string;
@@ -21,6 +22,7 @@ interface INavigation {
 const PERCENTAGE_FROM_BOTTOM_OF_IMAGE = 0.5;
 const DIV_ROTATION_DEGREES = 77;
 const TEMP_ARROW_PADDING_Y = 200;
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd9lEphyZS1CkJFt885Ws31evnETsymqPgZtjL2q9dIjwADbA/viewform";
 
 export const Navigation = observer(
   ({ start, end, avoidances }: INavigation) => {
@@ -123,6 +125,7 @@ export const Navigation = observer(
                 variant="extended"
                 color="primary"
                 show={isLastStep}
+                href={FORM_URL}
               >
                 End Navigation <CloseIcon />
               </StyledFab>
@@ -147,10 +150,11 @@ interface IStyledFab {
   show: boolean;
 }
 const StyledFab = styled(Fab)<IStyledFab>`
-  && {
+  &&& {
     position: absolute;
     top: ${props => (props.show ? 0 : 100)}px;
     transition: top 0.3s ease;
+    background-color: ${green[700]};
   }
 `;
 
