@@ -8,8 +8,6 @@ services:
         context: ./client
     ports:
         - 3000:3000
-    volumes:
-        - ./client:/app
   backend:
     stdin_open: true
     build: 

@@ -1,18 +1,14 @@
-FROM node:lts-alpine
+FROM node:16-alpine
 
 WORKDIR /app
 
-COPY package.json .
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package.json tsconfig.json ./  
+COPY ./src ./src
+COPY ./public ./public
 
 RUN npm install --only-prod --force
-
-COPY ./src .
-
-COPY ./public .
-
-COPY .gitignore .
-
-COPY tsconfig.json .
 
 EXPOSE 3000
 
