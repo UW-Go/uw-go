@@ -75,4 +75,5 @@ def get_route():
     )
 
 if __name__ == '__main__':
-    app.run()
+    application = app # for gunicorn
+    application.run()

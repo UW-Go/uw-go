@@ -1,17 +1,11 @@
-FROM python:3.7-alpine
+# This Dockerfile builds the API only.
 
+FROM python:3.9
 WORKDIR /app
 
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-
-RUN apk add --no-cache gcc musl-dev linux-headers
-
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+COPY . ./
+RUN pip install -r ./requirements.txt
+ENV FLASK_ENV production
 
 EXPOSE 5000
-
-COPY . .
-
-CMD ["flask", "run"]
+CMD ["gunicorn", "-b", ":5000", "app:app"]

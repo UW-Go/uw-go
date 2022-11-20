@@ -1,21 +1,20 @@
-version: "3"
 services:
-  frontend:
-    stdin_open: true
-    environment:
-      - REACT_APP_BACKEND_ROUTES=true
-    build:
-        context: ./client
-    ports:
-        - 3000:3000
-    volumes:
-        - ./client:/app
   backend:
-    stdin_open: true
-    build: 
-       context: ./server
+    build:
+      context: ./server
+      dockerfile: ./server/Dockerfile
+    image: uwgo-backend-image
+
+  client:
+    build:
+      context: ./client
+      dockerfile: ./client/Dockerfile
+    depends_on:
+      - backend
+    image: uwgo-frontend-image
     ports:
-      - 8000:5000
-    volumes:
-      - ./server:/app
-    
+      - "3000:80"
+    deploy:
+      restart_policy:
+        condition: on-failure
+
