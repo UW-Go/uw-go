@@ -4,7 +4,7 @@ WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package.json tsconfig.json ./  
+COPY package.json package-lock.json tsconfig.json ./  
 COPY ./src ./src
 COPY ./public ./public
 
